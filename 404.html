@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    	<meta charset="UTF-8">
+    	<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    	<meta name="apple-mobile-web-app-title" content="CodePen">
+    	<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    	<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
+		<title>PetaSal- 404 page </title>
+		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>	
+		<link rel='stylesheet' href='./style.css'>
+	
+	
+</head>
+<body translate="no">
+
+<!-- Note, this may have some issues in Firefox at present -->
+
+<!-- This is not entirely my original work. The matrix code is from a demo I dug up about a year and a half ago, which seemed like it might find a better home on CodePen.io -->
+
+<!-- Credit for original HTML5/JS programming of the Matrix code: http://www.scirra.com/forum/matrix-raining-code_topic51315.html -->
+
+<div id="message">
+	<h1>A glitch has occured [code: 404]</h1>
+	<p>
+	  <b>Boy</b>: Do not try and bend the website. That&#039;s impossible. Instead... only try to realize the truth. 
+	  <br />
+	  <b>Neo</b>: What truth? 
+	  <br />
+	  <b>Boy</b>: There is no page. 
+	  <br />
+	  <b>Neo</b>: There is no page? 
+	  <br />
+	  <b>Boy</b>: Then you&#039;ll see, that it is not the website that bends, it is only yourself.
+	</p>
+  </div>	
+  
+  <!-- The canvas must be inside a div called c2canvasdiv -->
+  <div id="c2canvasdiv">
+  
+	<!-- The canvas the project will render to.  If you change its ID, don't forget to change the
+	ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
+	<canvas id="c2canvas" width="960" height="640">
+	  <!-- This text is displayed if the visitor's browser does not support HTML5.
+	 You can change it, but it is a good idea to link to a description of a browser
+	 and provide some links to download some popular HTML5-compatible browsers. -->
+	  <h3>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+		<br/><br/><a href="https://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
+		<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
+		<a href="https://www.google.com/chrome/">Google Chrome</a><br/>
+		<a href="https://www.apple.com/safari/download/">Apple Safari</a><br/>
+		<a href="https://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/></h3>
+	</canvas>
+  
+  </div>
+
+
+</body>
+<script src="module" href="./script.js"></script>
+</html>
