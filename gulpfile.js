@@ -22,11 +22,15 @@ const headerComments = `WEBSITE: https://themefisher.com
 var path = {
   // source paths
   src: {
+    html: "src/*.html",
+    others: "src/*.+(php|icon|png)",
     theme: "src/theme.json",
     pages: "src/pages/*.html",
     partials: "src/partials/**/*.html",
+    incdir: "src/partials/",
     styles: "src/styles/*.scss",
     scripts: "src/scripts/*.js",
+    js: "js/*.js",
     plugins: "src/plugins/**/*",
     public: "src/public/**/*",
   },
@@ -37,8 +41,33 @@ var path = {
   },
 };
 
+// HTML
+gulp.task("html:build", function () {
+  return gulp
+    .src(path.src.html)
+    .pipe(
+      fileinclude({
+        basepath: path.src.incdir,
+      })
+    )
+    .pipe(
+      comments(`
+    WEBSITE: https://themefisher.com
+    TWITTER: https://twitter.com/themefisher
+    FACEBOOK: https://www.facebook.com/themefisher
+    GITHUB: https://github.com/themefisher/
+    `)
+    )
+    .pipe(gulp.dest(path.build.dir))
+    .pipe(
+      bs.reload({
+        stream: true,
+      })
+    );
+});
+
 // pages
-gulp.task("pages", function () {
+gulp.task("pages:build", function () {
   return gulp
     .src(path.src.pages)
     .pipe(
@@ -72,7 +101,7 @@ gulp.task("pages", function () {
 });
 
 // styles
-gulp.task("styles", function () {
+gulp.task("styles:build", function () {
   return gulp
     .src(path.src.styles)
     .pipe(
@@ -93,7 +122,7 @@ gulp.task("styles", function () {
 });
 
 // scripts
-gulp.task("scripts", function () {
+gulp.task("scripts:build", function () {
   return gulp
     .src(path.src.scripts)
     .pipe(jshint("./.jshintrc"))
@@ -108,8 +137,31 @@ gulp.task("scripts", function () {
     );
 });
 
+// Javascript
+gulp.task("js:build", function () {
+  return gulp
+    .src(path.src.js)
+    .pipe(jshint("./.jshintrc"))
+    .pipe(jshint.reporter("jshint-stylish"))
+    .on("error", gutil.log)
+    .pipe(
+      comments(`
+  WEBSITE: https://themefisher.com
+  TWITTER: https://twitter.com/themefisher
+  FACEBOOK: https://www.facebook.com/themefisher
+  GITHUB: https://github.com/themefisher/
+  `)
+    )
+    .pipe(gulp.dest(path.build.dir + "js/"))
+    .pipe(
+      bs.reload({
+        stream: true,
+      })
+    );
+});
+
 // Plugins
-gulp.task("plugins", function () {
+gulp.task("plugins:build", function () {
   return gulp
     .src(path.src.plugins)
     .pipe(gulp.dest(path.build.dir + "plugins/"))
@@ -120,8 +172,14 @@ gulp.task("plugins", function () {
     );
 });
 
+
+// Other files like favicon, php, sourcele-icon on root directory
+gulp.task("others:build", function () {
+  return gulp.src(path.src.others).pipe(gulp.dest(path.build.dir));
+});
+
 // public files
-gulp.task("public", function () {
+gulp.task("public:build", function () {
   return gulp.src(path.src.public).pipe(gulp.dest(path.build.dir));
 });
 
@@ -131,14 +189,17 @@ gulp.task("clean", function (cb) {
 });
 
 // Watch Task
-gulp.task("watch", function () {
-  gulp.watch(path.src.theme, gulp.parallel("styles"));
-  gulp.watch(path.src.pages, gulp.parallel("pages", "styles"));
-  gulp.watch(path.src.partials, gulp.parallel("pages", "styles"));
-  gulp.watch(path.src.scripts, gulp.parallel("scripts", "styles"));
-  gulp.watch(path.src.styles, gulp.parallel("styles"));
-  gulp.watch(path.src.plugins, gulp.parallel("plugins", "pages"));
-  gulp.watch(path.src.public, gulp.parallel("public", "pages"));
+gulp.task("watch:build", function () {
+  gulp.watch(path.src.html, gulp.parallel("html:build"));
+  gulp.watch(path.src.htminc, gulp.parallel("html:build"));
+  gulp.watch(path.src.theme, gulp.parallel("styles:build"));
+  gulp.watch(path.src.pages, gulp.parallel("pages:build", "styles"));
+  gulp.watch(path.src.partials, gulp.parallel("pages:build", "styles"));
+  gulp.watch(path.src.scripts, gulp.parallel("scripts:build", "styles"));
+  gulp.watch(path.src.js, gulp.parallel("js:build"));
+  gulp.watch(path.src.styles, gulp.parallel("styles:build"));
+  gulp.watch(path.src.plugins, gulp.parallel("plugins:build", "pages"));
+  gulp.watch(path.src.public, gulp.parallel("public:build", "pages"));
 });
 
 // dev Task
@@ -146,12 +207,15 @@ gulp.task(
   "dev",
   gulp.series(
     "clean",
-    "pages",
-    "styles",
-    "scripts",
-    "plugins",
-    "public",
-    gulp.parallel("watch", function () {
+    "html:build", 
+    "js:build",
+    "pages:build",
+    "styles:build",
+    "scripts:build",
+    "plugins:build",
+    "public:build",
+    "others:build",
+    gulp.parallel("watch:build", function () {
       bs.init({
         server: {
           baseDir: path.build.dir,
@@ -164,11 +228,20 @@ gulp.task(
 // Build Task
 gulp.task(
   "build",
-  gulp.series("clean", "pages", "styles", "scripts", "plugins", "public")
+  gulp.series(
+    "clean",
+    "html:build", 
+    "js:build",
+    "pages:build",
+    "styles:build",
+    "scripts:build",
+    "plugins:build",
+    "public:build",
+    "others:build",)
 );
 
 // Deploy Task
-gulp.task(
-  "deploy",
-  gulp.series("pages", "styles", "scripts", "plugins", "public")
-);
+// gulp.task(
+//   "deploy",
+//   gulp.series("html:build", "js:build","pages", "styles", "scripts", "plugins", "public")
+// );
