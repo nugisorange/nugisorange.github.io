@@ -3,9 +3,9 @@ import { setInner,getValue } from "./element.js";
 import { setCookieWithExpireHour } from "./cookie.js";
 
 export default function Login(){
-    let target_url = "";
+    let target_url = "https://asia-southeast2-project3-403614.cloudfunctions.net/loginGis";
     let tokenkey = "token";
-    let tokenvalue = "";
+    let tokenvalue = "689add118162cfeb40c5bc42f4c8cdf0ff56741727d9a48b457c7b8108983fcbe45f87c87d4197674d0ad380ca1";
     let datainjson = {
         "username": getValue("username"),
         "password": getValue("password")
