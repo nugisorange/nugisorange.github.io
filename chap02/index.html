@@ -27,6 +27,33 @@
           text-decoration: none;
         }
       </style>
+
+      <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <img src="./img/logo_nugis.png" alt="Logo" class="h-10" href="#">
+                </div>
+
+                <!-- Menu -->
+                <div class="flex space-x-4">
+                    
+                    <select onchange="location = this.value;" class="text-gray-600 hover:text-gray-900">
+                        <option><a href="./chap01/index.html" class="text-gray-600 hover:text-gray-900">Chapter 1</a></option>
+                        <option><a href="./chap02/index.html" class="text-gray-600 hover:text-gray-900">Chapter 2</a></option>
+                        <option><a href="./chap03/index.html" class="text-gray-600 hover:text-gray-900">Chapter 3</a></option>
+                        <option><a href="./chap04/index.html" class="text-gray-600 hover:text-gray-900">Chapter 4</a></option>
+                        <option><a href="./form/login.html" class="text-gray-600 hover:text-gray-900">Form Sign In | Chapter 5</a></option>
+                        <option><a href="../swagger/index.html" class="text-gray-600 hover:text-gray-900">Chapter 6</a></option>
+                        <option><a href="" class="text-gray-600 hover:text-gray-900">Chapter 7</a></option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </nav>
        <!-- profile -->
     <div class="p-4 border-t border-gray-200">
         <div class="flex items-center justify-between">
@@ -139,6 +166,9 @@
 <script src="https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js"></script>
 <script type="module" src="./js/main.js"></script>
 <script type="module" src="./js/app.js"></script>
+<script src="module" href="../js/index.js"></script>
+
 
 </body>
 </html>
+

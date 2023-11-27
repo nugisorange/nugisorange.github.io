@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css" type="text/css"/>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <title>Tugas 2 Sistem Informasi Geografis
+    <title>Tugas 3 Sistem Informasi Geografis
     </title>
 </head>
 <body>
@@ -27,6 +27,33 @@
           text-decoration: none;
         }
       </style>
+
+      <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <img src="./img/logo_nugis.png" alt="Logo" class="h-10" href="#">
+                </div>
+
+                <!-- Menu -->
+                <div class="flex space-x-4">
+                    
+                    <select onchange="location = this.value;" class="text-gray-600 hover:text-gray-900">
+                        <option><a href="./chap01/index.html" class="text-gray-600 hover:text-gray-900">Chapter 1</a></option>
+                        <option><a href="./chap02/index.html" class="text-gray-600 hover:text-gray-900">Chapter 2</a></option>
+                        <option><a href="./chap03/index.html" class="text-gray-600 hover:text-gray-900">Chapter 3</a></option>
+                        <option><a href="./chap04/index.html" class="text-gray-600 hover:text-gray-900">Chapter 4</a></option>
+                        <option><a href="./form/login.html" class="text-gray-600 hover:text-gray-900">Form Sign In | Chapter 5</a></option>
+                        <option><a href="../swagger/index.html" class="text-gray-600 hover:text-gray-900">Chapter 6</a></option>
+                        <option><a href="" class="text-gray-600 hover:text-gray-900">Chapter 7</a></option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </nav>
        <!-- profile -->
     <div class="p-4 border-t border-gray-200">
         <div class="flex items-center justify-between">
@@ -54,7 +81,11 @@
 </div>
     <center><h1>Geographic Information System</h1></center>
     <div id="map" class="map"></div>
-   
+    <center>
+        <div class="faisal">
+          <a href="./chap03/index.html">Chapter 3 - Cloud Function dan MongoDB</a>
+        </div>
+    </center>
         <input type="hidden" id="idmarker" name="idmarker" value="">
     
         <div id="popupinfo" class="ol-popup">
@@ -92,7 +123,7 @@
                             <th class="px-4 py-2">Tipe</th>
                         </tr>
                     </thead>
-                    <tbody id="lokasi"></tbody>
+                    <tbody></tbody>
                 </table>
             </div>    
         </div>
@@ -109,7 +140,7 @@
                     <th class="px-4 py-2">Tipe</th>
                 </tr>
             </thead>
-            <tbody id="polygon"></tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>
@@ -127,14 +158,16 @@
                     <th class="px-4 py-2">Tipe</th>
                 </tr>
             </thead>
-            <tbody id="line"></tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js"></script>
 <script type="module" src="./js/script.js"></script>
-<script type="module" src="./js/app.js"></script>
+<script src="module" href="../js/index.js"></script>
+
 
 </body>
 </html>
+
