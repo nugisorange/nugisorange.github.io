@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css" type="text/css"/>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <title>Tugas 2 Sistem Informasi Geografis
+    </title>
+</head>
+<body>
+    <style>
+        .faisal {
+          padding: 10px;
+          margin: 10px;
+          border: 1px solid black;
+          border: transparent;
+          width: 300px;
+          background-color: blue;
+          color: white;
+          border-radius: 30px;
+          text-align: center;
+        }
+        .faisal a {
+          color: white;
+          text-decoration: none;
+        }
+      </style>
+       <!-- profile -->
+    <div class="p-4 border-t border-gray-200">
+        <div class="flex items-center justify-between">
+          <h1 class="text-gray-600 font-medium">Muhammad Faisal Ashshidiq</h1>
+          <button class="text-gray-500 hover:text-gray-900">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+  </svg> -->
+          </button>
+        </div>
+        <p class="text-gray-400 text-sm my-1" id="activeStatus"></p>
+      </div>
+      <div class="mt-2">
+        <p class="text-gray-600 text-sm">NPM: 1214041</p>
+        
+    </div>
+    <div class="mt-2">
+        <p class="text-gray-600 text-sm">Kelas: 3A Teknik Informatika</p>
+        
+    </div>
+    <div class="mt-2">
+        <p class="text-gray-600 text-sm">Dosen Pengampu: Pak Rolly Awangga</p>
+
+    </div>
+</div>
+    <center><h1>Geographic Information System</h1></center>
+    <div id="map" class="map"></div>
+    <center>
+        <div class="faisal">
+          <a href="./chap03/index.html">Chapter 3 - Cloud Function dan MongoDB</a>
+        </div>
+    </center>
+        <input type="hidden" id="idmarker" name="idmarker" value="">
+    
+        <div id="popupinfo" class="ol-popup">
+            <b id="popupinfo-title"></b>
+            <div id="popupinfo-content"></div>
+            <div id="popupinfo-delete">
+                <input type="hidden" id="idmarker" name="idmarker" value="">
+                <button id="hapusbutton" type="button">Hapus</button><button id="hitungcogbutton" type="button">Hitung COG</button><br>
+            </div>
+            
+        </div>
+    
+        <div id="popup" class="ol-popup">
+            <b id="popup-title">Input Center of Gravity</b><a href="#" id="popup-closer" class="ol-popup-closer"></a>
+            <div id="popup-content"></div>
+            <div id="popup-input">
+                Nama : <input type="text" id="name" name="name" required><br>
+                Volume : <input type="text" id="volume" name="volume" required><br>
+                <input type="hidden" id="long" name="long" value="">
+                <input type="hidden" id="lat" name="lat" value="">
+                <button id="insertmarkerbutton" type="button">Input</button><br>
+            </div>
+        </div>
+
+ <!-- Tabel untuk menampilkan data GeoJSON -->
+        <div class="mt-8">
+            <div class="point-table">
+                <h1 class="text-xl font-semibold mb-4">Tipe Point</h1>
+                <table id="pointTable" class="table-auto w-full">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2">No</th>
+                            <th class="px-4 py-2">Nama</th>
+                            <th class="px-4 py-2">Koordinat</th>
+                            <th class="px-4 py-2">Tipe</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>    
+        </div>
+        <!-- Tabel untuk menampilkan data GeoJSON Polygon -->
+<div class="mt-8">
+    <div class="polygon-table">
+        <h1 class="text-xl font-semibold mb-4">Tipe Polygon</h1>
+        <table id="polygonTable" class="table-auto w-full">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">No</th>
+                    <th class="px-4 py-2">Nama</th>
+                    <th class="px-4 py-2">Koordinat</th>
+                    <th class="px-4 py-2">Tipe</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Tabel untuk menampilkan data GeoJSON Polyline -->
+<div class="mt-8">
+    <div class="polyline-table">
+        <h1 class="text-xl font-semibold mb-4">Tipe Polyline</h1>
+        <table id="polylineTable" class="table-auto w-full">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">No</th>
+                    <th class="px-4 py-2">Nama</th>
+                    <th class="px-4 py-2">Koordinat</th>
+                    <th class="px-4 py-2">Tipe</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ol@v8.1.0/dist/ol.js"></script>
+<script type="module" src="./js/main.js"></script>
+<script type="module" src="./js/app.js"></script>
+
+</body>
+</html>
