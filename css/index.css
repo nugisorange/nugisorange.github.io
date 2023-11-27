@@ -1,0 +1,54 @@
+/* Animasi pahlawan */
+.hero {
+    background-image: url('background-image.jpg');
+    background-size: cover;
+    height: 600px; /* Sesuaikan dengan ukuran yang diinginkan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+/* Animasi aksen */
+.accent {
+    animation: accentAnimation 2s ease-in-out infinite alternate;
+}
+
+@keyframes accentAnimation {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/* Animasi melayang */
+.floating {
+    animation: floatingAnimation 3s ease-in-out infinite;
+}
+
+@keyframes floatingAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Efek khusus */
+.special-effect {
+    animation: specialEffect 2s ease-in-out infinite;
+}
+
+@keyframes specialEffect {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
